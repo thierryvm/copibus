@@ -30,8 +30,8 @@ Les flux GTFS-RT sont servis en **JSON**, pas en protobuf (ADR 0005).
 ## 2. Sources sans clé (exploration seulement)
 
 - **Ancienne passerelle anonyme TEC (SIRI)** : `https://api-management-discovery-production.azure-api.net/api/siri/feed/tec/{vehicle-monitoring|situation-exchange|estimated-timetable}?format=json`. Utile pour explorer ; pas de garantie de durée, on ne bâtit rien dessus.
-- **GTFS SNCB anonyme** : `https://sncb-opendata.hafas.de/gtfs/static/c21ac6758dd25af84cca5b707f3cb3de`. Contient environ 75 lignes de **bus de remplacement** (`route_type` 700), publiées environ 5 semaines à l'avance. Les arrêts sont des gares ; pas de tracés.
-- **Infrabel, travaux** : jeu `langetermijnplanning-tcr-spoornetwerk` sur `https://opendata.infrabel.be` (API Explore v2.1). Donne les travaux planifiés sur le réseau ferré, sans information sur les bus.
+- **GTFS SNCB anonyme** : `https://sncb-opendata.hafas.de/gtfs/static/c21ac6758dd25af84cca5b707f3cb3de`. Contient environ 75 lignes de **bus de remplacement** (`route_type` 700), publiées environ 5 semaines à l'avance. Le numéro de course d'un bus est celui du train remplacé. Les arrêts sont des gares ; pas de tracés (ADR 0008).
+- **Infrabel, travaux** : jeu `langetermijnplanning-tcr-spoornetwerk` sur `https://opendata.infrabel.be` (API Explore v2.1). Plan à long terme des travaux sur le réseau ferré, sans information sur les bus. Sur les lignes 42 et 43, il commence en 2027 et ne contient pas les travaux à court terme : inutile comme alerte (ADR 0008).
 
 ## 3. Carte et routage (sans clé)
 
@@ -44,6 +44,7 @@ Les flux GTFS-RT sont servis en **JSON**, pas en protobuf (ADR 0005).
 - Une ligne TEC s'identifie par son `route_id`, jamais par son seul numéro (ADR 0004). Lignes pilotes : 64 = `gr:tec:L0064-24183`, 65 = `gr:tec:L0065-24185`, 727 = `gr:tec:L0727-23616`. Plusieurs « 65 » existent en Wallonie, confirmé par Thierry sur le terrain.
 - Les quais sont dans `stops.platform_code` (254 arrêts sur 46 571). À Guillemins, les 64 et 65 partent du quai D et déposent au quai C.
 - La course 64-3 (07 h 47 Guillemins quai D, 08 h 58 Aywaille Gare SNCB) correspond exactement à une course du GTFS. La 64 fait une boucle dans Banneux.
+- SNCB : 14 lignes `BUS` touchent notre région en novembre-décembre 2026 (par exemple 666 Liège–Trois-Ponts, 671 Liège–Bomal, 678 Verviers–Spa). Leurs arrêts sont les coordonnées des gares, pas l'arrêt réel du bus (ADR 0008).
 
 ## Règles d'usage
 

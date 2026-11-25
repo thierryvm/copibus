@@ -9,7 +9,7 @@ Démarrée le 25 novembre 2026. But : lever les inconnues techniques avant d'éc
 | **A. Données TEC** | 6 paquet de ligne (64, 65 : calendrier, tracés, quais), 9 lignes au même numéro, 10 temps réel aux arrêts | Claude, seul | fait (ADR 0003, 0004, 0005 ; inventaire à valider par Thierry) |
 | **B. Carte et itinéraires** | 7 tuiles hors ligne (PMTiles du couloir), 12 routage Valhalla en mode bus | Claude, seul | fait (ADR 0006, 0007 ; stockage OPFS et lecture hors ligne sur l'iPhone passent au chantier E) |
 | **C. Socle** | 1 Supabase local, 3 conditions Belgian Mobility (licence, quotas) | Claude, seul (Docker démarré) | fait (ADR 0001, 0002) |
-| **D. Navettes SNCB** | 12 GTFS SNCB (lignes `BUS`), travaux Infrabel | Claude, seul | à lancer |
+| **D. Navettes SNCB** | 12 GTFS SNCB (lignes `BUS`), travaux Infrabel | Claude, seul | fait (ADR 0008 ; e-mail SNCB / Keolis en attente de l'accord de Thierry) |
 | **E. Banc d'essai iPhone** | 4 PWA sur iPhone 14, 11 notifications et Raccourcis | Claude prépare une page de test ; Thierry l'ouvre sur son iPhone (environ 15 min) | après A–D |
 | **F. OCR des feuilles de service** | 8 | Claude, avec les exemples du lundi 30/11 | 30/11/2026 |
 | **G. E-mails** | 2 | en attente du nom de l'app | bloqué |

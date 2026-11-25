@@ -16,7 +16,7 @@ Démarrée le 25 novembre 2026. But : lever les inconnues techniques avant d'éc
 
 ## Ce dont Claude a besoin de Thierry (le moins possible)
 
-1. **Compte développeur Belgian Mobility** et sa clé : à créer par Thierry (mot de passe personnel). La clé va dans le coffre DevContext `perso` sous le nom `BMC_API_KEY`. Sans clé, on avance avec l'accès anonyme (exploration).
+1. **Compte développeur Belgian Mobility** et sa clé : à créer par Thierry (mot de passe personnel). La clé va dans le coffre DevContext `perso` sous le nom `devctx/perso/bmc-key`. Sans clé, on avance avec l'accès anonyme (exploration).
 2. **Jeton Supabase** du compte gmail (org `copibus`) dans le coffre DevContext, au moment de brancher le cloud (pas avant le pilote).
 3. **Tests sur l'iPhone 14** : ouvrir une page de test et toucher quelques boutons (chantier E).
 4. **Exemples de feuilles de service** le 30/11 (chantier F).

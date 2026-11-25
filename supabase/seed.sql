@@ -1,0 +1,2 @@
+-- Local seed data for development only. Never put real or personal data here.
+-- Intentionally empty during phase 0 (no schema yet).

@@ -40,10 +40,10 @@ Supposé, non vérifié :
 
 1. **Source des navettes : le GTFS SNCB**, relu chaque jour. Il donne les dates, les heures, les gares et le numéro du train remplacé, environ 5 semaines à l'avance.
 2. **Infrabel n'est pas une source d'alerte** pour le pilote : son plan ne voit pas les travaux à court terme. Il peut servir plus tard à annoncer les grands chantiers de 2027-2028, sans plus.
-3. **L'arrêt réel devant chaque gare** ne vient d'aucune donnée ouverte. Il sera saisi sur le terrain (photo et point sur la carte), validé par un chauffeur, puis partagé (PRD, M11).
+3. **L'arrêt réel devant chaque gare** n'est pas dans le GTFS SNCB. Il sera retrouvé par croisement de sources : arrêts TEC proches de la gare (GTFS TEC) et arrêts de bus d'OpenStreetMap (`highway=bus_stop`, licence ODbL). Un chauffeur le confirme ou le corrige sur le terrain, puis il est partagé (PRD, M11). Google Maps affiche bien ces arrêts, mais ses conditions interdisent d'en extraire ou d'en stocker les données : il ne sert pas de source.
 4. Les coordonnées des gares ne sont **jamais présentées comme l'arrêt du bus**.
 5. **Les données TEC restent la référence** : quand une gare est aussi un arrêt TEC, l'app prend l'arrêt et le quai du GTFS TEC, et le GTFS SNCB ne sert qu'à dire qu'une navette existe.
-6. Écrire à la SNCB ou à Keolis (format des feuilles de route, arrêts réels) reste un envoi externe : **seulement avec l'accord de Thierry**.
+6. **Aucun contact avec la SNCB ni Keolis** : décision de Thierry du 25/11/2026. L'app reste autonome et se fonde sur les données ouvertes croisées.
 
 ## Conséquences
 

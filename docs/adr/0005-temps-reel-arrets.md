@@ -30,12 +30,15 @@ Vérifié, GTFS-RT :
 - `trip-update` répond **200** avec la clé (contre 404 sans clé). 1 286 courses : 208 prévues, **1 078 supprimées** (sans détail par arrêt), ce qui recoupe SIRI.
 - 7 207 mises à jour d'arrêt : 5 869 « pas de donnée », 1 176 prévues, 162 arrêts sautés.
 - 87 courses seulement portent un retard : médiane 0 s, p90 180 s, de −480 s à 1 020 s.
-- L'horodatage par course vaut toujours 0 : on ne peut mesurer la fraîcheur que par l'en-tête du flux.
+- Aucun horodatage utile par course : on ne peut mesurer la fraîcheur que par l'en-tête du flux.
 - Lignes pilotes : **1** course avec mise à jour.
 - `vehicle-position` : 139 véhicules seulement (contre 810 à 842 en SIRI VM), tous retrouvés dans `trip-update`.
 - `alert` : 3,4 Mo.
 
 Supposé, non vérifié :
+
+- Que les comptes « lignes pilotes » sont justes. Deux biais possibles : le script SIRI calcule minuit dans le fuseau du relevé (décalage d'une heure si le relevé est en UTC) ; le script GTFS-RT ne reconnaît une course pilote que par son `routeId`, pas par son `tripId`. À corriger au prochain relevé.
+- Que l'horodatage par course vaut vraiment 0 : le script ne distingue pas 0 d'une valeur absente. La conclusion ne change pas (fraîcheur lue dans l'en-tête du flux).
 
 - Que la faible couverture vient de l'heure tardive. Il faut un relevé en heure de pointe.
 - Que les suppressions massives sont réelles et pas un artefact du flux.

@@ -15,6 +15,7 @@ import gzip
 import json
 import lzma
 import math
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -328,7 +329,7 @@ def main():
         pkg = make_package(rid, *data)
         lean = strip_debug(pkg)
         raw = json.dumps(lean, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-        name = rid.replace(":", "_")
+        name = re.sub(r"[^A-Za-z0-9_-]", "_", rid)
         (out_dir / f"{name}.json").write_bytes(raw)
         (out_dir / f"{name}.debug.json").write_text(json.dumps(pkg, ensure_ascii=False, indent=1), encoding="utf-8")
         report[rid] = {

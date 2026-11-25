@@ -30,19 +30,20 @@ Vérifié (rapport `data/raw/tec/packages/report.json`) :
 | Taille xz | 10 Ko | 19,3 Ko |
 
 - Tracés simplifiés de 500 à 1 650 points vers 130 à 390 points par parcours.
-- Écart maximal entre un arrêt et le tracé : **17,7 m**. Tous les parcours avancent dans le bon sens le long du tracé, sans arrêt répété.
+- Écart maximal entre un arrêt et le tracé : **17,7 m**, sans arrêt répété. C'est la vraie preuve de l'alignement : le contrôle « avance dans le bon sens » du script ne peut pas échouer par construction.
 - Les **quais** figurent dans le nom de l'arrêt (exemple : « LIEGE Gare des Guillemins - Quai D » à l'aller, « Quai C » au retour). Pas besoin d'une source séparée pour ces cas.
-- Le calendrier est fourni par période (« Mercredi », « Sem-N-3 »…) avec dates de début et de fin : il suffit pour savoir quelles courses roulent un jour donné.
+- Le calendrier est fourni par période (« Mercredi », « Sem-N-3 »…) avec dates de début et de fin.
 - Plusieurs parcours de la L0065 sont identiques (mêmes arrêts, même longueur) : ils peuvent être fusionnés.
 
 Supposé, non vérifié :
 
+- Que ce calendrier suffit pour savoir quelles courses roulent un jour donné : le générateur copie les services mais ne résout encore aucune date. À tester sur un jour précis.
 - Que le nom d'arrêt donne toujours le quai. C'est vrai aux grandes gares vues ici, pas prouvé partout.
 - Que le tracé TEC suit la voirie réelle à chaque carrefour (pas encore comparé à OpenStreetMap).
 
 ## Décision
 
-- Le paquet de ligne est un fichier par `route_id`, compressé (gzip), de l'ordre de **15 à 30 Ko** par ligne. On peut en embarquer des dizaines sans souci.
+- Le paquet de ligne est un fichier par `route_id`, compressé (gzip), de l'ordre de **13 à 27 Ko** par ligne. On peut en embarquer des dizaines sans souci.
 - Format : arrêts, parcours, profils horaires, services et courses en table compacte (colonnes + lignes), tracés simplifiés.
 - Ajouter la **fusion des parcours identiques** au générateur.
 - Le quai est lu dans le nom d'arrêt quand il y est ; sinon l'app n'affiche pas de quai (on n'invente rien).

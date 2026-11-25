@@ -19,8 +19,9 @@ Vérifié :
 
 - **852** lignes (`route_id`) pour **538** numéros différents.
 - **137** numéros sont partagés, ce qui touche **451** lignes. Un même numéro peut couvrir jusqu'à **7** lignes.
+- Ces totaux comptent aussi les lignes en double version ci-dessous : le nombre de lignes vraiment différentes qui partagent un numéro est un peu plus bas.
 - Certaines lignes existent en **deux versions** de `route_id` dans la même publication (L0145, L0703, L0708) : le suffixe du `route_id` (par exemple `-24183`) change d'une version à l'autre.
-- Dans la zone pilote, **487** lignes passent. La seule vraie ambiguïté de numéro y est le **« 10 »** : `gr:tec:L0010-24146` (Sclessin – Flémalle, 22 arrêts) et `gr:tec:X9100-23956` (Manhay – Aywaille – Remouchamps, 41 arrêts).
+- Dans la zone pilote, **487** lignes passent. La seule vraie ambiguïté de numéro y est le **« 10 »** : `gr:tec:L0010-24146` (Sclessin – Flémalle, 22 arrêts dans la zone) et `gr:tec:X9100-23956` (Manhay – Aywaille – Remouchamps, 41 arrêts dans la zone). Ces chiffres comptent les arrêts situés dans la zone pilote, dans les deux sens, pas le total de la ligne.
 
 Supposé :
 

@@ -5,12 +5,12 @@ Projet personnel de Thierry (chauffeur de bus TEC, dépôt de Banneux). Le profi
 ## Identité et accès
 
 - Contexte DevContext **`perso`** : toute commande sortante part de PowerShell, préfixée par `work perso -NoCd &&`.
-- GitHub : dépôt privé `thierryvm/copibus`.
-- Supabase : développement **en local** (CLI + Docker). Le projet cloud `copibus` (ref `gkgeoyzkmkeepcwlljcu`, org `copibus` sur le compte gmail) ne sert qu'au pilote. Le jeton `SUPABASE_ACCESS_TOKEN` du contexte `perso` vise un **autre** compte : ne pas l'utiliser pour ce projet tant qu'un jeton dédié n'est pas dans le coffre.
+- GitHub : dépôt `thierryvm/copibus`, **public** pour permettre la revue Sourcery, tous droits réservés (`LICENSE`). Tout ce qui est versionné est donc visible de tous : aucun identifiant d'infrastructure, aucune donnée personnelle, aucun secret. Les identifiants vont dans `.claude/infra.local.md` (non versionné).
+- Supabase : développement **en local** (CLI + Docker). Le projet cloud `copibus` (identifiants dans `.claude/infra.local.md`, non versionné) ne sert qu'au pilote. Le jeton `SUPABASE_ACCESS_TOKEN` du contexte `perso` vise un **autre** compte : ne pas l'utiliser pour ce projet tant qu'un jeton dédié n'est pas dans le coffre.
 
 ## Interdits absolus
 
-- Ne jamais toucher **Terminal Learning** (projet Supabase `jdnukbpkjyyyjpuwgxhv`, sa vitrine en production) ni l'org **ankora-prod** (`pjsicsqwzunenrzdkqwu`).
+- Ne jamais toucher les autres projets de Thierry, en particulier **Terminal Learning** (sa vitrine en production) et **ankora-prod** (identifiants dans `.claude/infra.local.md`).
 - Ne jamais versionner `docs/cadrage/exemples/` : captures de planning, données personnelles.
 - Aucune donnée de santé. Logs sans données personnelles.
 - Secrets uniquement en variables d'environnement (coffre DevContext), jamais dans un fichier, un log, une URL ou un outil navigateur.

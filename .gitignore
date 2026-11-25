@@ -28,3 +28,9 @@ target/
 Thumbs.db
 __pycache__/
 .venv/
+
+# Notes locales (identifiants d'infrastructure)
+*.local.md
+
+# Visuels d'inspiration (logos de tiers) : gardés en local
+docs/cadrage/inspirations/

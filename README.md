@@ -4,6 +4,8 @@ Copilote pour les chauffeurs de bus du réseau TEC en Wallonie. L'assistante, EV
 
 Application indépendante, non affiliée au TEC, à la SNCB ni à Keolis.
 
+**Tous droits réservés.** Le dépôt est public pour la consultation et la revue de code seulement : aucune réutilisation n'est autorisée sans accord écrit (voir [LICENSE](LICENSE)).
+
 ## État
 
 - **Cadrage et design terminés** (novembre 2026) : voir [docs/PRD-v2.md](docs/PRD-v2.md) et le canevas de design (privé).

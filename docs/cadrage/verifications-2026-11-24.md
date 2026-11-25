@@ -37,7 +37,7 @@ Captures dans `docs/cadrage/exemples/` (dossier à exclure de git : données per
 
 ## Supabase
 
-- Le projet `jdnukbpkjyyyjpuwgxhv` est la base de production de **Terminal Learning** (org `yitotclnoikooytmyqlg`, eu-west-1). Il ne doit pas accueillir cette app : projet dédié recommandé.
+- Le projet Supabase existant sur le compte est la base de production de **Terminal Learning**. Il ne doit pas accueillir cette app : projet dédié recommandé.
 
 ## Nom
 

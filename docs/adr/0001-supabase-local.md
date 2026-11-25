@@ -6,7 +6,7 @@
 
 ## Question
 
-Est-ce que Supabase tourne en local (CLI + Docker) sur le PC de Thierry, à côté des autres projets qui utilisent déjà Supabase en local, sans les gêner ?
+Est-ce que Supabase tourne en local (CLI + Docker) sur le poste de développement, à côté des autres projets qui utilisent déjà Supabase en local, sans les gêner ?
 
 ## Ce qui a été testé
 

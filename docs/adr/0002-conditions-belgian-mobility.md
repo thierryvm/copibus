@@ -66,8 +66,8 @@ Pas de clé développeur au moment du test (rien sous `devctx/perso/bmc-key` dan
 1. **La réutilisation est permise** : licence CC BY 4.0, usage commercial compris. Copibus peut traiter le GTFS TEC dans son pipeline et republier les paquets de ligne dérivés sur Vercel, en fichiers statiques.
 2. **Mention de la source obligatoire**, à deux endroits :
    - dans l'app (écran « À propos » et pied de la carte) :
-     « Source : TEC – Open Data, via Belgian Mobility Company – données du JJ/MM/AAAA. Contient des données modifiées par Copibus. » ;
-   - dans chaque paquet de ligne, avec la date du jeu (`feed_version`).
+     « Source : TEC – Open Data, via Belgian Mobility Company (lien vers https://data.belgianmobility.io) – données du JJ/MM/AAAA – licence CC BY 4.0 (lien vers le texte de la licence). Contient des données publiées à l'origine par le TEC, modifiées par Copibus. » ;
+   - dans chaque paquet de ligne, un champ `attribution` qui reprend les mêmes éléments : opérateur (TEC), portail BMC avec son lien, licence CC BY 4.0, date du jeu (`feed_version`) et mention de modification.
 3. **La clé BMC reste côté serveur.** Elle sert dans le pipeline et dans les Edge Functions, jamais dans le code envoyé au téléphone ni dans un fichier statique. Raison : elle est personnelle, et la publier violerait les conditions §5. Les téléphones ne doivent donc **jamais** appeler BMC directement. Le temps réel passe par une fonction serveur qui fait un seul appel et le partage entre tous les utilisateurs, avec un cache.
 4. **Budget d'appels** prévu pour la production, en compte Standard :
    - le temps réel est interrogé toutes les 30 s par le serveur, soit 2 880 appels/jour par flux ;
@@ -77,7 +77,7 @@ Pas de clé développeur au moment du test (rien sous `devctx/perso/bmc-key` dan
 
 ## Conséquences
 
-- **À faire par Thierry avant M1** : créer le compte développeur gratuit sur le portail BMC, puis la clé « Standard ». La clé va dans le coffre DevContext `perso` sous le nom `devctx/perso/bmc-key`. `docs/phase-0/PLAN.md` disait `BMC_API_KEY` : le nom est aligné dans la PR de fin de phase 0.
+- **À faire par Thierry avant M1** : créer le compte développeur gratuit sur le portail BMC, puis la clé « Standard ». La clé va dans le coffre DevContext `perso` sous le nom `devctx/perso/bmc-key`. `docs/phase-0/PLAN.md` disait `BMC_API_KEY` : le nom y est aligné dans cette même PR.
 - **PRD §9, point 3** : la vérification passe à « faite ». La section des risques note qu'il n'y a **aucune garantie de service** sur le niveau gratuit, d'où l'importance du mode dégradé « horaire théorique ».
 - **À revérifier** quand la clé existera :
   - quota par clé ou par IP ;

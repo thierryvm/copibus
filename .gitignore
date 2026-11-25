@@ -1,0 +1,30 @@
+# Données personnelles de Thierry (captures de planning employeur) : jamais dans git
+docs/cadrage/exemples/
+
+# Secrets et configuration locale
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+supabase/.temp/
+supabase/.branches/
+
+# Données TEC / SNCB téléchargées (lourdes, régénérables)
+data/raw/
+*.zip
+*.pbf
+*.pmtiles
+
+# Outils
+node_modules/
+dist/
+build/
+coverage/
+target/
+.vite/
+.turbo/
+*.log
+.DS_Store
+Thumbs.db
+__pycache__/
+.venv/

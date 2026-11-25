@@ -76,6 +76,7 @@ Rôles techniques : `driver`, `referent` (valide les notes terrain et les trajet
 - **Arrivée à un point de départ (EVE prend les devants) :** quand le chauffeur ouvre l'app près d'un arrêt où commence une course de son planning, EVE la propose aussitôt (« Tu es à Aywaille Gare, ta course 65 vers Liège part à 09:24, le bus est déjà à quai ») avec ce qu'elle a vu : position, planning et TEC en direct. Un toucher charge la course. Avant chaque reprise, une notification arrive à l'heure prévue par le planning (Web Push, possible dans l'app web iPhone), avec une plage silencieuse réglable. La détection d'arrivée **app fermée** (géorepérage) n'existe pas dans une app web iPhone : elle viendra avec l'app Android, puis iOS native.
 
 Navigation (révisée le 25/11/2026) : barre du bas à 5 places, soit 4 onglets (Aujourd'hui, Carte, Lignes, Moi) et un **bouton EVE central** toujours présent. Chaque écran a une sortie visible : retour, fermer ou lien. Les écrans de conduite n'ont que de grandes sorties, utilisables à l'arrêt :
+
 - un bouton « Menu » de 88 px, symétrique de « Silence », ramène à l'accueil ;
 - la ligne ouvre la liste des arrêts ;
 - « Éco » passe en mode économie ;
@@ -108,6 +109,7 @@ WCAG 2.2 AA mesuré (contrastes, cibles tactiles ≥ 44 px, jamais la couleur se
 ADN des planches d'inspiration (bleu nuit, accent cyan électrique, assistante comme visage de l'app), traduit en interface sobre : fond presque noir, une seule couleur d'accent, typographie très lisible, halos réservés à l'assistante. Trois directions avec Claude Design sur les mêmes écrans (accueil/service du jour, guidage, personnalisation), chacune avec sa mascotte (robot repensé, visage dans un phare de bus, personnage-bus). Thierry choisit ou combine. Mascotte originale : aucune ressemblance avec l'EVE de Pixar ni avec le robot généré par ChatGPT.
 
 **Choix du 25 novembre 2026 : direction A « Halo ».** Robot copilote à casque-micro, bleu nuit et cyan, panneaux translucides sur la carte. Canevas : https://claude.ai/artifact/UPhReypoKwSxE7WDHtFL64 (privé). Exigences ajoutées par Thierry :
+
 - chaque fonction doit être visible et facile à toucher (libellés lisibles, raccourcis de 88 px, bouton « Silence » libellé et non une icône seule) ;
 - la mascotte exprime des émotions : 6 expressions (prête, parle, contente, attention, réfléchit, en pause) ; l'état « attention » change de couleur **et** de forme ;
 - quand EVE parle, sa bouche suit la parole. Voix système : synchronisation par mot via les événements `boundary` de la synthèse vocale, à vérifier sur l'iPhone 14 en phase 0 (repli : rythme estimé à partir du texte). Voix premium (clé API) : l'audio passe par l'app, la bouche suit le volume réel (Web Audio `AnalyserNode`). Respect de « réduire les animations ».
@@ -321,7 +323,7 @@ Toutes les tables liées à une organisation portent `org_id` ; RLS partout ; id
 | Ouverture PWA installée, 4G lente | < 2 s jusqu'à l'écran utile |
 | Délai position GPS → écran | < 500 ms |
 | Paquet de ligne | < 150 Ko compressé |
-| Tuiles du couloir des 26 lignes | à mesurer en phase 0 ; découpées si > 25 Mo par fichier |
+| Tuiles du couloir des 26 lignes | couloir 64-65 mesuré : 14 Mo au zoom 14 (ADR 0006) ; découpées si > 25 Mo par fichier |
 | Données mobiles pendant 1 h de guidage | < 1 Mo (tout est préchargé) |
 | Batterie et chaleur, 2 h de guidage en charge, au soleil, iPhone 14 | mesurées en phase 0 ; mode économie si l'écran baisse ou coupe |
 
@@ -347,13 +349,13 @@ Chaque point se conclut par un ADR écrit.
 4. **PWA sur iPhone 14 :** GPS au premier plan 30 min, Wake Lock en mode installé (repris après retour au premier plan), voix françaises disponibles, déblocage du son par un toucher, comportement avec l'interrupteur silencieux, une sortie Bluetooth et l'écran verrouillé ; batterie et chaleur en charge sur support.
 5. **Traces GPS :** les tracés des lignes viennent déjà du GTFS TEC, la même source que l'app Letec et Google Maps (dont les conditions interdisent d'extraire les itinéraires). Le rejeu commence avec des traces simulées et bruitées. Des traces réelles (application GPX lancée avant le départ, sans toucher pendant la conduite) sont un plus pour valider le comportement dans la vallée, et elles restent **indispensables pour les trajets haut-le-pied**, absents de toutes les sources publiques.
 6. **Pipeline sur la ligne 65 :** paquet de ligne, calendrier réel, calage OSM et consignes de carrefour, rejeu des traces. Paquet et calendrier validés le 25/11/2026 (ADR 0003, 13 à 27 Ko gzip par ligne ; calendrier encore à tester sur un jour précis) ; calage OSM, consignes et rejeu restent à faire.
-7. **Tuiles :** taille du PMTiles du couloir, stockage OPFS, lecture hors ligne sur l'iPhone.
+7. **Tuiles :** taille du PMTiles du couloir (**fait**, ADR 0006 : 14 Mo jusqu'au zoom 14), stockage OPFS, lecture hors ligne sur l'iPhone (chantier E).
 8. **OCR (avec les exemples du lundi 30 novembre 2026) :** Tesseract.js sur l'appareil vs service gratuit vs IA vision via clé utilisateur ; précision mesurée.
 9. **Lignes au même numéro :** le numéro n'est pas unique en Wallonie (quatre « 65 », six « 10 »), et certaines lignes de la zone desservent aussi d'autres parties de la région. Inventaire complet des lignes de la zone pilote par `route_id` (parcours, variantes, destinations affichées), validé par Thierry avec sa connaissance du terrain ; l'app ne désigne jamais une ligne par son seul numéro. Inventaire fait le 25/11/2026 (ADR 0004) : seul le « 10 » est ambigu dans la zone pilote ; validation de Thierry attendue.
 10. **Temps réel aux arrêts :** SIRI Estimated Timetable (environ 13 Mo par appel, ADR 0005) filtré et mis en cache côté serveur, comparé à un retard calculé à partir des positions SIRI. Avec la clé, sur la passerelle Azure de Belgian Mobility, GTFS-RT TripUpdates répond 200 (25/11/2026), mais peu de courses portent une vraie prévision : le retard sera calculé d'abord à partir des positions SIRI VM (ADR 0005). Relevé en heure de pointe et test de quota à refaire avant M5.
 11. **Proactivité sur iPhone 14 :** Web Push envoyé à l'heure prévue (pg_cron + Edge Function), délai réel de réception, mode Concentration ; Raccourcis iOS (« En arrivant à… », CarPlay, Bluetooth) qui ouvrent l'app via `webapp://` : avec ou sans confirmation ?
 
-12. **Navettes de remplacement SNCB :** lire le GTFS SNCB (accès anonyme vérifié le 25/11/2026). Il contient 75 lignes `BUS` (`route_type` 700), publiées environ 5 semaines à l'avance, mais leurs arrêts sont les gares elles-mêmes, sans position d'arrêt de bus ni tracé. À faire aussi : croiser avec les travaux Infrabel (jeu `langetermijnplanning-tcr-spoornetwerk`, sans information bus) et prototyper le routage **Valhalla** en mode « bus » (hauteur, largeur, longueur, poids ; licence MIT ; hors ligne possible) sur un extrait de la Wallonie. Écrire à la SNCB (gtfs@sncb.be) et à Keolis pour le format des feuilles de route : un envoi externe, qui demande l'accord de Thierry.
+12. **Navettes de remplacement SNCB :** lire le GTFS SNCB (accès anonyme vérifié le 25/11/2026). Il contient 75 lignes `BUS` (`route_type` 700), publiées environ 5 semaines à l'avance, mais leurs arrêts sont les gares elles-mêmes, sans position d'arrêt de bus ni tracé. À faire aussi : croiser avec les travaux Infrabel (jeu `langetermijnplanning-tcr-spoornetwerk`, sans information bus) et prototyper le routage **Valhalla** en mode « bus » (**fait**, ADR 0007 : suit le tracé TEC à 1-2 m près, consignes en français, mais un tronçon de la 65 part en détour de 16 km ; gabarit du véhicule pas encore testé). Écrire à la SNCB (gtfs@sncb.be) et à Keolis pour le format des feuilles de route : un envoi externe, qui demande l'accord de Thierry.
 
 Recherche comparative (applis voyageurs, applis chauffeurs, faisabilité, navettes) : `docs/recherche/benchmark-2026-11-25.md`.
 
@@ -394,7 +396,7 @@ Remplacer les outils officiels de Keolis ou du TEC ; valider officiellement un �
 
 - Nom de l'app (session dédiée : candidats, domaines, marques BOIP/EUIPO).
 - Domaine d'envoi des e-mails (en attente du nom de l'app) et connexion provisoire des testeurs (Google ou e-mail + mot de passe).
-- Déviations poids lourd (M5b) : Valhalla ou GraphHopper, hébergement gratuit possible ou non.
+- Déviations poids lourd (M5b) : Valhalla retenu (ADR 0007) ; il faut un petit serveur permanent, hébergeur et coût à choisir par Thierry.
 - Méthode OCR (après les exemples du 30 novembre 2026).
 - Correspondance entre un service conducteur et les blocs TEC (`block_id`), et entre numéros de parc et références véhicule SIRI (ex. `V5220_3197`).
 - Exploitant réel de chaque dépôt pilote (référentiel à construire et vérifier).

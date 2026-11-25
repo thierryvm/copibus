@@ -33,7 +33,13 @@ Les flux GTFS-RT sont servis en **JSON**, pas en protobuf (ADR 0005).
 - **GTFS SNCB anonyme** : `https://sncb-opendata.hafas.de/gtfs/static/c21ac6758dd25af84cca5b707f3cb3de`. Contient environ 75 lignes de **bus de remplacement** (`route_type` 700), publiées environ 5 semaines à l'avance. Les arrêts sont des gares ; pas de tracés.
 - **Infrabel, travaux** : jeu `langetermijnplanning-tcr-spoornetwerk` sur `https://opendata.infrabel.be` (API Explore v2.1). Donne les travaux planifiés sur le réseau ferré, sans information sur les bus.
 
-## 3. Faits vérifiés dans ces données
+## 3. Carte et routage (sans clé)
+
+- **Protomaps (tuiles de carte)** : archives PMTiles mondiales quotidiennes, `https://build.protomaps.com/AAAAMMJJ.pmtiles` (testé : `20261124`). Lecture par requêtes HTTP partielles. Données OpenStreetMap. Attribution : « © OpenStreetMap » et Protomaps (ADR 0006).
+- **Geofabrik (OpenStreetMap Belgique)** : `https://download.geofabrik.de/europe/belgium/belgium-latest.osm.pbf` (environ 700 Mo, mis à jour chaque jour, fichier `.md5` à côté). Licence ODbL (ADR 0007).
+- **Valhalla (routage)** : image Docker `ghcr.io/valhalla/valhalla`, licence MIT. Tourne en local, aucun service externe (ADR 0007).
+
+## 4. Faits vérifiés dans ces données
 
 - Une ligne TEC s'identifie par son `route_id`, jamais par son seul numéro (ADR 0004). Lignes pilotes : 64 = `gr:tec:L0064-24183`, 65 = `gr:tec:L0065-24185`, 727 = `gr:tec:L0727-23616`. Plusieurs « 65 » existent en Wallonie, confirmé par Thierry sur le terrain.
 - Les quais sont dans `stops.platform_code` (254 arrêts sur 46 571). À Guillemins, les 64 et 65 partent du quai D et déposent au quai C.

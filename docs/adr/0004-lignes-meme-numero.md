@@ -1,7 +1,7 @@
 # 0004 — Lignes qui portent le même numéro
 
 - **Date :** 2026-11-25
-- **Statut :** proposée (l'inventaire de la zone pilote attend la validation de Thierry)
+- **Statut :** proposée
 - **Vérification de phase 0 :** 9 (voir `docs/PRD-v2.md` §9)
 
 ## Question
@@ -35,6 +35,7 @@ Supposé :
 
 ## Conséquences
 
+- Portée de la décision : L'inventaire de la zone pilote attend la validation de Thierry.
 - PRD §9 point 9 : inventaire fait ; il reste la validation de Thierry sur le terrain, en particulier le « 10 » et les lignes en double version.
 - Le générateur de paquets (ADR 0003) doit enregistrer le code stable et la version séparément.
 - À revérifier à la prochaine publication TEC : est-ce que les suffixes ont bougé ?

@@ -15,12 +15,12 @@ Tests réalisés sur les données publiques TEC (Belgian Mobility Open Data), en
 
 Captures dans `docs/cadrage/exemples/` (dossier à exclure de git : données personnelles de Thierry).
 
-- Planning par jour : code de service (« 201 », « 207 », suffixe « NSA »), « SERDIV », « Non travaillé », heures de début et de fin.
-- Un service = liste de tâches : heure, lieu (« Banneux.Dépôt », « Liège, Gare des Guillemins Quai D »), **type** (`COM` = course commerciale, `HLP` = haut-le-pied), **ligne** interne (« T105S », différente du numéro public), durée, **véhicule** (« 505050 »), **numéro de course** (« 64-3 » = ligne publique 64), observations (« Obs : 67|12*45 »), coupures (« Coupure 7 mn »).
-- Synthèse : `TTE`, `TD`, `Amplitude` (201 : 07:28 / 08:25 / 11:15 ; 207 : 05:24 / 05:38 / 12:23).
-- **Lien planning ↔ GTFS vérifié (25/11/2026) :** la course « 64-3 » du service 201 (départ 07:47 de Liège Gare des Guillemins quai D, arrivée 08:58 à Aywaille Gare SNCB) correspond exactement à une course GTFS de la ligne 64 Liège–Banneux–Aywaille (même départ, même arrivée, 66 arrêts). La ligne 64 fait une **boucle dans Banneux** (mêmes arrêts à l'aller et au retour), point d'attention pour le guidage.
-- **Services coupés** confirmés : 207 = 07:29-08:34 puis 15:19-19:52 au dépôt de Banneux.
-- À clarifier au fil du temps (l'app Keolis est nouvelle, Thierry ne connaît pas encore tous les codes) : sens exact de `TTE`, `TD`, des codes « Obs », de « T105S » et de « NSA ». Le véhicule « 505050 » serait le numéro complet du bus (hypothèse de Thierry, 25/11) ; lien avec la référence SIRI (`V5220_3197`) à établir.
+- Planning par jour : code de service (un numéro, parfois un suffixe), « SERDIV », « Non travaillé », heures de début et de fin (codes réels non reproduits ici).
+- Un service = liste de tâches : heure, lieu (« <dépôt> », « Liège, Gare des Guillemins Quai D »), **type** (`COM` = course commerciale, `HLP` = haut-le-pied), **ligne** interne (« T105S », différente du numéro public), durée, **véhicule** (numéro de bus), **numéro de course** (« 64-3 » = ligne publique 64), observations (« Obs : 67|12*45 »), coupures (« Coupure 7 mn »).
+- Synthèse : `TTE`, `TD`, `Amplitude` (durées en heures:minutes).
+- **Lien planning ↔ GTFS vérifié (25/11/2026) :** une course de la ligne publique 64 relevée dans un planning (départ de Liège Gare des Guillemins quai D, arrivée à Aywaille Gare SNCB) correspond exactement à une course GTFS de la ligne 64 Liège–Banneux–Aywaille (même départ, même arrivée, 66 arrêts). La ligne 64 fait une **boucle dans Banneux** (mêmes arrêts à l'aller et au retour), point d'attention pour le guidage.
+- **Services coupés** confirmés : un service peut avoir deux parties séparées par plusieurs heures, avec retour au dépôt entre les deux.
+- À clarifier au fil du temps (l'app Keolis est nouvelle, Thierry ne connaît pas encore tous les codes) : sens exact de `TTE`, `TD`, des codes « Obs », de « T105S » et de « NSA ». Le numéro de véhicule serait le numéro complet du bus (hypothèse de Thierry, 25/11) ; lien avec la référence SIRI (`V5220_3197`) à établir.
 
 ## Temps réel SIRI
 

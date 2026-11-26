@@ -1,7 +1,7 @@
 # 0007 — Routage Valhalla en mode bus, et où l'héberger
 
 - **Date :** 2026-11-25
-- **Statut :** acceptée (en partie : gabarit du véhicule et hébergement réel restent à faire)
+- **Statut :** acceptée
 - **Vérification de phase 0 :** 12, partie routage (voir `docs/PRD-v2.md` §9)
 
 ## Question
@@ -54,6 +54,7 @@ Supposé, non vérifié :
 
 ## Conséquences
 
+- Portée de la décision : Gabarit du véhicule et hébergement réel restent à faire.
 - Le générateur de paquet de ligne (ADR 0003) doit appeler Valhalla, découper par tronçons et appliquer le garde-fou.
 - Attribution : « © OpenStreetMap » (ODbL). Valhalla est sous licence MIT.
 - À faire avant le module M5b :

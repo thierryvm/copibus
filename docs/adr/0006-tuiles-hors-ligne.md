@@ -1,7 +1,7 @@
 # 0006 — Tuiles de carte hors ligne (PMTiles du couloir)
 
 - **Date :** 2026-11-25
-- **Statut :** acceptée (en partie : stockage OPFS et lecture hors ligne sur l'iPhone restent à tester au chantier E)
+- **Statut :** acceptée
 - **Vérification de phase 0 :** 7 (voir `docs/PRD-v2.md` §9)
 
 ## Question
@@ -45,6 +45,7 @@ Supposé, non vérifié :
 
 ## Conséquences
 
+- Portée de la décision : Stockage OPFS et lecture hors ligne sur l'iPhone restent à tester au chantier E.
 - 14 Mo par couloir : on peut en embarquer plusieurs, mais pas toute la Wallonie. Un chauffeur télécharge le couloir de son dépôt.
 - Hébergement du fichier : voir ADR 0007 (rien n'est créé ni activé sans l'accord de Thierry).
 - À revérifier au chantier E : stockage OPFS, lecture sans réseau, rendu au zoom 16 et plus.

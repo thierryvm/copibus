@@ -43,6 +43,10 @@ def fetch(url: str, offset: int, length: int) -> bytes:
 def read_varint(buf: bytes, pos: int) -> tuple[int, int]:
     result, shift = 0, 0
     while True:
+        if pos >= len(buf):
+            raise RuntimeError("truncated varint")
+        if shift > 63:
+            raise RuntimeError("varint longer than 64 bits")
         b = buf[pos]
         pos += 1
         result |= (b & 0x7F) << shift
@@ -55,6 +59,8 @@ def parse_directory(raw: bytes) -> list[tuple[int, int, int, int]]:
     """Return entries as (tile_id, offset, length, run_length)."""
     pos = 0
     n, pos = read_varint(raw, pos)
+    if n > len(raw):  # every entry needs at least one byte per field
+        raise RuntimeError(f"directory claims {n} entries for {len(raw)} bytes")
     ids, runs, lens, offs = [], [], [], []
     last = 0
     for _ in range(n):

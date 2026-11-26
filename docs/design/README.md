@@ -1,6 +1,6 @@
 # Design de Copibus — référence pour coder l'interface
 
-Ce fichier résume le canevas de design. En cas de doute, le canevas fait foi ; en cas d'écart entre le canevas et ce fichier, on corrige l'un ou l'autre par une PR.
+Ce fichier résume le canevas de design. La source de vérité produit reste `docs/PRD-v2.md` : en cas d'écart entre le canevas, ce fichier et le PRD, c'est le PRD qui fait foi, et tout changement passe par un ADR et une mise à jour du PRD.
 
 ## Canevas
 
@@ -44,7 +44,7 @@ Ce fichier résume le canevas de design. En cas de doute, le canevas fait foi ; 
 
 ### États du temps réel
 
-Toujours affichés **en mots et avec une icône**, jamais par la couleur seule.
+Affichés **en mots et avec une icône**, jamais par la couleur seule. Règle du PRD : l'avance et le retard ne s'affichent qu'**à l'arrêt** ; pendant la conduite, ces deux états sont masqués.
 
 | État | Texte | Fond |
 |---|---|---|
@@ -71,6 +71,7 @@ Toujours affichés **en mots et avec une icône**, jamais par la couleur seule.
 ## Retour au toucher et mouvement
 
 - Appui : `scale(.97)` en 120 ms. Avec « réduire les animations » : opacité .8 à la place.
+- Avec « réduire les animations », le point du suivi en direct ne pulse plus (point plein fixe) et la bouche d'EVE reste immobile (l'état « parle » est montré par une icône).
 - La bouche d'EVE suit la parole : événements `boundary` de la synthèse vocale, ou volume réel pour la voix premium.
 
 ## Navigation
@@ -87,7 +88,7 @@ Toujours affichés **en mots et avec une icône**, jamais par la couleur seule.
 
 ## Contenu des maquettes
 
-- Tiré du planning réel de Thierry (semaine du 30/11 : service au dépôt de Banneux, un service coupé) et des horaires TEC réels du 23/11 (lignes 64, 65, 727 ; Aywaille Gare SNCB ; quais D et C à Guillemins).
+- Planning **fictif** sur le modèle d'un vrai planning de chauffeur (un service coupé), avec des horaires TEC publics du 23/11 : lignes 64 (`gr:tec:L0064-24183`), 65 (`gr:tec:L0065-24185`) et 727 (`gr:tec:L0727-23616`, voir `docs/donnees/sources.md`) ; Aywaille Gare SNCB ; quais D et C à Guillemins.
 - Retards, perturbations, notes et messages sont **inventés**.
 - L'écran des arrêts, EVE proactive et la demande complète à EVE sont décrits dans `docs/PRD-v2.md` §4.2 et §4.6.
 

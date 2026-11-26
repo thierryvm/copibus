@@ -1,7 +1,7 @@
 # 0005 — Temps réel aux arrêts
 
 - **Date :** 2026-11-25
-- **Statut :** acceptée (pour la phase de conception ; le temps réel reste hors du MVP, décision D15)
+- **Statut :** acceptée
 - **Vérification de phase 0 :** 10 (voir `docs/PRD-v2.md` §9)
 
 ## Question
@@ -54,6 +54,7 @@ Supposé, non vérifié :
 
 ## Conséquences
 
+- Portée de la décision : Pour la phase de conception ; le temps réel reste hors du MVP, décision D15.
 - PRD §9 point 10 : mise à jour (200 avec clé sur la passerelle Azure, couverture faible des prévisions, VM retenu).
 - À refaire avant M5 : un relevé en heure de pointe un jour de semaine, et un test de quota (429).
 - Risque : si TEC réduit le flux VM, le retard calculé disparaît. L'app doit alors retomber sur l'horaire théorique, clairement signalé.

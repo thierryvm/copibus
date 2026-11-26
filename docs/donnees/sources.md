@@ -10,7 +10,7 @@ Dernière vérification : 25/11/2026.
 - Authentification : en-tête `bmc-partner-key` (clé du compte Standard, chargée en mémoire seulement). L'autre adresse, `api.belgianmobility.io`, répond 401 avec cette clé.
 - Toujours appeler en **GET** : une requête HEAD répond 404 sur les flux temps réel, même quand le flux existe.
 - Mise à jour du temps réel : environ toutes les 30 s. Quota : voir ADR 0002.
-- Attribution obligatoire dans l'app : « Belgian Mobility Company ».
+- Attribution obligatoire dans l'app (licence CC BY 4.0, texte complet dans ADR 0002) : opérateur TEC, portail Belgian Mobility Company avec son lien, licence CC BY 4.0, date du jeu de données et mention de modification par Copibus.
 
 | Flux | Chemin | Taille relevée |
 |---|---|---|

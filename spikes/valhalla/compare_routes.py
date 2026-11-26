@@ -84,6 +84,14 @@ def stats(v):
             "share_over_30m": round(sum(1 for x in s if x > 30) / len(s), 4)}
 
 
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise RuntimeError(f"refusing redirect to {newurl}")
+
+
+_OPENER = urllib.request.build_opener(_NoRedirect)
+
+
 def route(url, stops):
     parts = urllib.parse.urlsplit(url)
     if parts.scheme != "http" or parts.hostname not in ("127.0.0.1", "localhost"):
@@ -94,13 +102,16 @@ def route(url, stops):
                        "directions_options": {"language": "fr-FR"}}).encode()
     req = urllib.request.Request(url + "/route", data=body, headers={"Content-Type": "application/json"})
     t0 = time.perf_counter()
-    with urllib.request.urlopen(req, timeout=120) as r:
+    with _OPENER.open(req, timeout=120) as r:
         data = json.loads(r.read())
     return data, time.perf_counter() - t0
 
 
 def main():
     url, out = sys.argv[1], Path(sys.argv[2])
+    inputs = {Path(a.rsplit(":", 1)[0]).resolve() for a in sys.argv[3:]}
+    if out.resolve() in inputs:
+        raise SystemExit("output path must differ from every input package")
     results = []
     for arg in sys.argv[3:]:
         path, idx = arg.rsplit(":", 1)

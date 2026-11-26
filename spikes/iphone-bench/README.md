@@ -8,7 +8,7 @@ voices and `boundary` events, sound unlock by a tap, and OPFS storage of 14 MB
 The report button copies results only: accuracy, counts, durations. No position,
 no personal data.
 
-Hosting: temporary GitHub Pages site from the `gh-pages` branch, for this test only.
+Hosting: temporary GitHub Pages site served from the root of `main`, for this test only.
 It is turned off after the test. Final hosting is still open (Cloudflare, Supabase
 or Vercel).
 

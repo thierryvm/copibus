@@ -1,7 +1,7 @@
 # 0003 — Paquet de ligne : calendrier, tracés, quais (lignes 64 et 65)
 
 - **Date :** 2026-11-25
-- **Statut :** acceptée (en partie : calage OSM, consignes de carrefour et rejeu des traces restent à faire)
+- **Statut :** acceptée
 - **Vérification de phase 0 :** 6 (voir `docs/PRD-v2.md` §9)
 
 ## Question
@@ -46,10 +46,11 @@ Supposé, non vérifié :
 - Le paquet de ligne est un fichier par `route_id`, compressé (gzip), de l'ordre de **13 à 27 Ko** par ligne. On peut en embarquer des dizaines sans souci.
 - Format : arrêts, parcours, profils horaires, services et courses en table compacte (colonnes + lignes), tracés simplifiés.
 - Ajouter la **fusion des parcours identiques** au générateur.
-- Le quai est lu dans `platform_code` quand il est rempli ; sinon l'app n'affiche pas de quai (on n'invente rien).
+- Le quai est lu dans `platform_code` quand il est rempli. Sinon, il est lu dans le nom de l'arrêt quand celui-ci finit par « - Quai X » (X = 1 à 3 lettres ou chiffres) : vérifié le 26/11/2026, 87 arrêts TEC sont dans ce cas sur 325 noms de ce type (exemple : « MARLOIE Gare - Quai 1 »). Un nom de rue comme « HUY Quai d'Arona » ne correspond pas au motif. Sans l'un ni l'autre, l'app n'affiche pas de quai (on n'invente rien).
 
 ## Conséquences
 
+- Portée de la décision : Calage OSM, consignes de carrefour et rejeu des traces restent à faire.
 - PRD §9 point 6 : paquet et calendrier validés. Restent à faire, plus tard (chantier B ou phase 1) : calage sur OSM, consignes aux carrefours, rejeu de traces GPS réelles.
 - Les identifiants de service changent à chaque nouvelle publication GTFS : le paquet doit porter la date de sa source et être régénéré à chaque publication.
 - À revérifier à la prochaine publication TEC : tailles, écart arrêt / tracé, présence des quais.

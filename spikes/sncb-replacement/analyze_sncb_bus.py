@@ -25,6 +25,11 @@ def parent_id(stop_id, stops):
     return stop_id
 
 
+def safe(value):
+    """Drop control characters so feed text cannot drive the terminal."""
+    return "".join(ch for ch in str(value) if ch.isprintable())
+
+
 def main(zip_path, out_path, focus):
     z = zipfile.ZipFile(zip_path)
     names = set(z.namelist())
@@ -94,7 +99,9 @@ def main(zip_path, out_path, focus):
             "last_date": d[-1].isoformat() if d else None,
             "n_dates": len(d),
             "stations": sorted(r["stations"]),
-            "trip_short_name_numeric": all(s.isdigit() for s in r["short_names"] if s),
+            # Blank names count as non-numeric, and an empty set is not "all numeric".
+            "trip_short_name_numeric": bool(r["short_names"])
+            and all(s.isascii() and s.isdigit() for s in r["short_names"]),
         })
     route_out.sort(key=lambda x: (x["first_date"] or "", x["route_id"]))
 
@@ -127,7 +134,8 @@ def main(zip_path, out_path, focus):
                      ensure_ascii=False, indent=1))
     print("focus routes:", len(focus_hits))
     for r in focus_hits:
-        print(" ", r["route_id"], r["long_name"], r["first_date"], r["last_date"], r["trips"], r["stations"])
+        print(" ", *(safe(v) for v in (r["route_id"], r["long_name"], r["first_date"], r["last_date"],
+                                        r["trips"], r["stations"])))
 
 
 if __name__ == "__main__":
